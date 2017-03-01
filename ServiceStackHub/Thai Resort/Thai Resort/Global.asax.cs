@@ -12,7 +12,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-
+using Thai_Resort.Repositories;
 
 namespace Thai_Resort
 {
@@ -48,6 +48,8 @@ namespace Thai_Resort
                     Permissions = new List<string> { "PingTest" }
                 }, password);
 
+                container.RegisterAutoWired<UserInfoRepository>();
+                container.RegisterAutoWired<HotelInfoRepository>();
 
             }
         }

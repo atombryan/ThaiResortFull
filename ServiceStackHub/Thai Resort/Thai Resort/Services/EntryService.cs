@@ -9,7 +9,6 @@ namespace Thai_Resort
 {
     public class EntryService : Service
     {
-        
         public object Any(EntryServiceEntry entry)
         {
             //Write ipAddress and macAddress to log

@@ -138,11 +138,32 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntryService.cs" />
+    <Compile Include="HotelInfo\BillingInfo.cs" />
+    <Compile Include="HotelInfo\DietPlans.cs" />
+    <Compile Include="HotelInfo\FitnessPlans.cs" />
+    <Compile Include="HotelInfo\HotelInfo.cs" />
+    <Compile Include="HotelInfo\MealInfo.cs" />
+    <Compile Include="HotelInfo\Menu.cs" />
+    <Compile Include="HotelInfo\ReservationPlans.cs" />
+    <Compile Include="HotelInfo\UserRoles.cs" />
+    <Compile Include="HotelInfo\WorkoutInfo.cs" />
+    <Compile Include="Repositories\HotelInfoRepository.cs" />
+    <Compile Include="Repositories\UserInfoRepository.cs" />
+    <Compile Include="Services\EntryService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GetBillingInfoService.cs" />
+    <Compile Include="Services\GetDietPlanInfo.cs" />
+    <Compile Include="Services\GetFitnessPlanInfoService.cs" />
+    <Compile Include="Services\GetHotelInfoService.cs" />
+    <Compile Include="Services\GetMealInfoService.cs" />
+    <Compile Include="Services\GetMenuService.cs" />
+    <Compile Include="Services\GetWorkoutInfoService.cs" />
+    <Compile Include="Services\ReservationService.cs" />
+    <Compile Include="Services\WriteMealService.cs" />
+    <Compile Include="Services\WriteWorkoutService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
