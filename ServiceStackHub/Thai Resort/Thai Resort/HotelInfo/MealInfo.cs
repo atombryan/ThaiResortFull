@@ -10,5 +10,6 @@ namespace Thai_Resort.HotelInfo
         public string mealName { get; set; }
         public string carbs { get; set; }
         public string protein { get; set; }
+        public DateTime date { get; set; }
     }
 }

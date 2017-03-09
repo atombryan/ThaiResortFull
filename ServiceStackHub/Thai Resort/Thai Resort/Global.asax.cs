@@ -1,18 +1,24 @@
-﻿using Funq;
-using ServiceStack;
-using ServiceStack.Auth;
-using ServiceStack.Caching;
-using ServiceStack.Configuration;
-using ServiceStack.Logging;
-using ServiceStack.Logging.EventLog;
-using ServiceStack.MiniProfiler;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using Funq;
+using ServiceStack;
+using ServiceStack.MiniProfiler;
+using ServiceStack.Logging;
+using ServiceStack.Logging.EventLog;
+using ServiceStack.Auth;
+using ServiceStack.Caching;
+using ServiceStack.Configuration;
+using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.Sqlite;
+using ServiceStack.Data;
+using ServiceStack.MiniProfiler.Data;
 using Thai_Resort.Repositories;
+
+
 
 namespace Thai_Resort
 {
@@ -47,9 +53,14 @@ namespace Thai_Resort
                     Roles = new List<string> { "Basic", RoleNames.Admin },
                     Permissions = new List<string> { "PingTest" }
                 }, password);
-
+                
+                var hotelConnectionFactory = new OrmLiteConnectionFactory(@"\\\\49.49.49.19\\Databases\\HotelInfo.db", SqliteDialect.Provider) { ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current) };
+                var userConnectionFactory = new OrmLiteConnectionFactory(@"\\\\49.49.49.19\\Databases\\UserInfo.db", SqliteDialect.Provider) { ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current) };
+                container.Register<IDbConnectionFactory>(hotelConnectionFactory);
+                container.Register<IDbConnectionFactory>(userConnectionFactory);
                 container.RegisterAutoWired<UserInfoRepository>();
                 container.RegisterAutoWired<HotelInfoRepository>();
+
 
             }
         }

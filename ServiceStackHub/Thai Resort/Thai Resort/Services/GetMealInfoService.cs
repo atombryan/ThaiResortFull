@@ -13,10 +13,11 @@ namespace Thai_Resort.Services
         UserInfoRepository UserInfoRepository { get; set; }
         public object Any (GetMealInfoServiceEntry entry)
         {
-            return new GetMealInfoServiceResonse() { mealInfo = UserInfoRepository.getMealInfo(entry.username, entry.userHash, entry.date) };
+            return new GetMealInfoServiceResonse() { mealInfo = UserInfoRepository.getMealInfo(entry.userHash, entry.date) };
         }
 
     }
+    [Route("/GetMealInfo")]
     public class GetMealInfoServiceEntry : IReturn<GetMealInfoServiceResonse>
     {
         public string username { get; set; }

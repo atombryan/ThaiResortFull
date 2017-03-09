@@ -15,6 +15,7 @@ namespace Thai_Resort.Services
             return new GetBillingInfoResponse() { info = UserInfoRepository.getBillingInfo(entry.username, entry.userHash) };
         }
     }
+    [Route("/GetBillingInfo")]
     public class GetBillingInfoEntry : IReturn<GetBillingInfoResponse>
     {
         public string username { get; set; }

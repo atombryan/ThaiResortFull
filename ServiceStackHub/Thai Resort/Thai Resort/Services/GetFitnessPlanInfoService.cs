@@ -8,19 +8,18 @@ using Thai_Resort.Repositories;
 
 namespace Thai_Resort.Services
 {
-    public class GetFitnessPlanInfoService
+    public class GetFitnessPlanInfoService : Service
     {
         UserInfoRepository UserInfoRepository { get; set; }
 
         public object Any(GetPlanInfoServiceEntry entry)
         { 
-            return new GetPlanInfoServiceResponse() { plan = UserInfoRepository.getUserFitnessPlan(entry.username, entry.userHash) };
+            return new GetPlanInfoServiceResponse() { plan = UserInfoRepository.getUserFitnessPlan(entry.userHash) };
         }
     }
     [Route("/GetFitPlanInfo")]
     public class GetPlanInfoServiceEntry : IReturn<GetPlanInfoServiceResponse>
     {
-        public string username { get; set; }
         public string userHash { get; set; }
     }
     public class GetPlanInfoServiceResponse

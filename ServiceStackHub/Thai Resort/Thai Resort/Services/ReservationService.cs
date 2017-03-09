@@ -11,24 +11,39 @@ namespace Thai_Resort.Services
 {
     public class ReservationService : Service
     {
-        UserInfoRepository UserInfoRepository { get; set; }
-        IUserAuthRepository userRepo { get; set; }
+        public UserInfoRepository UserInfoRepository { get; set; }
+        public IUserAuthRepository userRepo { get; set; }
 
         public object Any(ReservationServiceEntry entry)
         {
-            ReservationServiceResponse response = new ReservationServiceResponse() { checkIn = new DateTime(0, 0, 0), checkOut = new DateTime(0, 0, 0), returnCode = 0 };
-            UserDatabaseEntry databaseEntry = (UserDatabaseEntry) entry;
+            ReservationServiceResponse response = new ReservationServiceResponse() { checkIn = new DateTime(2016, 2, 5), checkOut = new DateTime(2017, 2, 5), returnCode = 0 };
+            UserDatabaseEntry databaseEntry = new UserDatabaseEntry()
+            {
+                email = entry.email,
+                phoneNumber = entry.phoneNumber,
+                arrival = entry.arrival,
+                dateOfBirth = entry.dateOfBirth,
+                departure = entry.departure,
+                fullName = entry.fullName,
+                reservationPlan = entry.reservationPlan,
+                specialRequests = entry.specialRequests,
+                password = ""
+            };
             databaseEntry.registrationDate = DateTime.Now;
             string salt;
             string hash;
             new SaltedHash().GetHashAndSaltString(entry.fullName, out hash, out salt);
             databaseEntry.userHash = salt + hash;
-            if (entry.arrival >= entry.departure || entry.arrival <= DateTime.Now) response.returnCode = 1;
-            else if (entry.reservationPlan >= ReservationPlans.END) response.returnCode = 2;
-            else if (entry.dateOfBirth.Add(new TimeSpan(6574, 0, 0, 0, 0)) > DateTime.Now) response.returnCode = 3;
-            else if (!entry.email.Contains("@")) response.returnCode = 4;
-            else
+          //  if (entry.arrival >= entry.departure || entry.arrival <= DateTime.Now) response.returnCode = 1;
+          //  else if (entry.reservationPlan >= ReservationPlans.END) response.returnCode = 2;
+          //  else if (entry.dateOfBirth.Add(new TimeSpan(6574, 0, 0, 0, 0)) > DateTime.Now) response.returnCode = 3;
+          //  else if (!entry.email.Contains("@")) response.returnCode = 4;
+            
             {
+                if (UserInfoRepository.Equals(null))
+                {
+                    throw new Exception ("IT'S NULL");
+                }
                 UserDatabaseEntryResponse entryResponse =  UserInfoRepository.addUser(databaseEntry);
                 response.checkIn = entryResponse.checkIn;
                 response.checkOut = entryResponse.checkOut;
@@ -41,7 +56,7 @@ namespace Thai_Resort.Services
                     PhoneNumber = entry.phoneNumber,
                     BirthDate = entry.dateOfBirth,
                     FullName = entry.fullName,
-                    UserName = entry.email,
+                    UserName = "GenericUsername123",
                     Salt = userSalt,
                     PasswordHash = passHash,
                     Roles = new List<string>() { HotelInfo.UserRoles.BASIC }
@@ -50,6 +65,21 @@ namespace Thai_Resort.Services
             }
 
             return response;
+        }
+        public string randomSaltNoSpecialChars()
+        {
+            List<char> chars = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
+            Random rand = new Random();
+            string abc = "";
+            abc += chars[rand.Next(0, 8)];
+            abc += chars[rand.Next(0, 8)];
+            abc += chars[rand.Next(0, 8)];
+            abc += chars[rand.Next(0, 8)];
+            abc += chars[rand.Next(0, 8)];
+            abc += chars[rand.Next(0, 8)];
+            abc += chars[rand.Next(0, 8)];
+            abc += chars[rand.Next(0, 8)];
+            return abc;
         }
 
     }
@@ -67,6 +97,8 @@ namespace Thai_Resort.Services
         public string specialRequests { get; set; }
         public string password { get; set; }
     }
+
+
     /// <summary>
     /// Error Codes:
     /// 0 = Successfully Written

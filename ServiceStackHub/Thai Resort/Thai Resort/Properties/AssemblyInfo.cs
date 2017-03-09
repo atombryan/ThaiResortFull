@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Thai_Resort")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Thai Resort Inc.")]
 [assembly: AssemblyProduct("Thai_Resort")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017 ThaiResortInc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -7,14 +7,21 @@ using Thai_Resort.Repositories;
 
 namespace Thai_Resort.Services
 {
-    public class GetMenuService : Service
+    public class GetMenuService
     {
         HotelInfoRepository HotelInfoRepository { get; set; }
-        public object Any(DateTime date)
+        public object Any(GetMenuServiceEntry entry)
         {
-            return new GetMenuServiceResponse() { menu = HotelInfoRepository.getMenu(date) };
+            return new GetMenuServiceResponse() { menu = HotelInfoRepository.getMenu(entry.date) };
         }
     }
+
+    [Route("/GetMenu")]
+    public class GetMenuServiceEntry
+    {
+        public DateTime date { get; set; }
+    }
+
     public class GetMenuServiceResponse
     {
         public HotelInfo.Menu menu { get; set; }
