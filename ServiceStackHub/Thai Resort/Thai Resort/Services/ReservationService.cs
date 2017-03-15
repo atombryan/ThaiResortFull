@@ -27,13 +27,17 @@ namespace Thai_Resort.Services
                 fullName = entry.fullName,
                 reservationPlan = entry.reservationPlan,
                 specialRequests = entry.specialRequests,
-                password = ""
+                password = "",
+                fitnessPlan = FitnessPlans.Flexibility,
+                dietPlan = DietPlans.HighProtein,
+                billingInfo = new BillingInfo { totalHotel = 0, totalMeal = 0, totalRoomService = 0 }
             };
             databaseEntry.registrationDate = DateTime.Now;
             string salt;
             string hash;
             new SaltedHash().GetHashAndSaltString(entry.fullName, out hash, out salt);
             databaseEntry.userHash = salt + hash;
+            response.userHash = salt + hash;
           //  if (entry.arrival >= entry.departure || entry.arrival <= DateTime.Now) response.returnCode = 1;
           //  else if (entry.reservationPlan >= ReservationPlans.END) response.returnCode = 2;
           //  else if (entry.dateOfBirth.Add(new TimeSpan(6574, 0, 0, 0, 0)) > DateTime.Now) response.returnCode = 3;
@@ -45,8 +49,8 @@ namespace Thai_Resort.Services
                     throw new Exception ("IT'S NULL");
                 }
                 UserDatabaseEntryResponse entryResponse =  UserInfoRepository.addUser(databaseEntry);
-                response.checkIn = entryResponse.checkIn;
-                response.checkOut = entryResponse.checkOut;
+                response.checkIn = new DateTime();
+                response.checkOut = new DateTime();
                 string userSalt;
                 string passHash;
                 new SaltedHash().GetHashAndSaltString(entry.password, out passHash, out userSalt);
@@ -56,7 +60,7 @@ namespace Thai_Resort.Services
                     PhoneNumber = entry.phoneNumber,
                     BirthDate = entry.dateOfBirth,
                     FullName = entry.fullName,
-                    UserName = "GenericUsername123",
+                    UserName = entry.username,
                     Salt = userSalt,
                     PasswordHash = passHash,
                     Roles = new List<string>() { HotelInfo.UserRoles.BASIC }
@@ -66,25 +70,9 @@ namespace Thai_Resort.Services
 
             return response;
         }
-        public string randomSaltNoSpecialChars()
-        {
-            List<char> chars = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
-            Random rand = new Random();
-            string abc = "";
-            abc += chars[rand.Next(0, 8)];
-            abc += chars[rand.Next(0, 8)];
-            abc += chars[rand.Next(0, 8)];
-            abc += chars[rand.Next(0, 8)];
-            abc += chars[rand.Next(0, 8)];
-            abc += chars[rand.Next(0, 8)];
-            abc += chars[rand.Next(0, 8)];
-            abc += chars[rand.Next(0, 8)];
-            return abc;
-        }
 
     }
     
-    [Route("/Reserve")]
     public class ReservationServiceEntry : IReturn<ReservationServiceResponse>
     {
         public string email { get; set; }
@@ -96,6 +84,7 @@ namespace Thai_Resort.Services
         public string fullName { get; set; }
         public string specialRequests { get; set; }
         public string password { get; set; }
+        public string username { get; set; }
     }
 
 
@@ -112,5 +101,6 @@ namespace Thai_Resort.Services
         public int returnCode { get; set; }
         public DateTime checkIn { get; set; }
         public DateTime checkOut { get; set; }
+        public string userHash { get; set; }
     }
 }

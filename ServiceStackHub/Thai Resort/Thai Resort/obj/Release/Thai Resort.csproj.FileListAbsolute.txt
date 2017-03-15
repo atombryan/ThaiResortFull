@@ -43,7 +43,6 @@ C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\Build\ServiceStack.OrmLite.xml
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\Build\ServiceStack.Text.xml
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\Build\System.Data.SQLite.xml
-C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\obj\Release\Thai Resort.dll
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\obj\Release\Thai Resort.pdb
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\Build\Thai Resort.exe.config
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\ApplicationInsights.config
@@ -59,8 +58,6 @@ C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\roslyn\vbc.exe
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\roslyn\VBCSCompiler.exe
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Thai Resort.dll.config
-C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Thai Resort.dll
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Thai Resort.pdb
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Microsoft.AI.DependencyCollector.dll
@@ -92,3 +89,7 @@ C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\ServiceStack.Text.xml
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\System.Data.SQLite.xml
 C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\obj\Release\Thai Resort.csprojResolveAssemblyReference.cache
+C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Thai Resort.exe.config
+C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Thai Resort.exe
+C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\bin\Mono.Posix.dll
+C:\Users\bryan.perkins\Documents\Thai Resort\ThaiResortFull\ServiceStackHub\Thai Resort\Thai Resort\obj\Release\Thai Resort.exe

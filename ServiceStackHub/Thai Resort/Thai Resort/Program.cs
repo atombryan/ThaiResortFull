@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using Mono.Unix;
 using Mono.Unix.Native;
-
+using ServiceStack;
+using System.Net.NetworkInformation;
 
 namespace Thai_Resort
 {
@@ -13,25 +14,17 @@ namespace Thai_Resort
     {
         static void Main(string[] args)
         {
-            //Initialize app host
-            var appHost = new Global.ThaiResortAppHost();
-            appHost.Init();
-            appHost.Start("http://127.0.0.1:8080/");
+            Console.WriteLine("Please enter in the desired listening URI");
+            var enteredURI = "http://192.168.1.125:4915/";
+            var appHost = new Global.ThaiResortAppHostSelfHost()
+                .Init()
+                .Start(enteredURI);
 
-            UnixSignal[] signals = new UnixSignal[] {
-                new UnixSignal(Signum.SIGINT),
-                new UnixSignal(Signum.SIGTERM),
-            };
-
-            // Wait for a unix signal
-            for (bool exit = false; !exit;)
+            Console.WriteLine("Started at {0}, listening on {1}", DateTime.Now, enteredURI);
+            bool quit = false;
+            while (!quit)
             {
-                int id = UnixSignal.WaitAny(signals);
-
-                if (id >= 0 && id < signals.Length)
-                {
-                    if (signals[id].IsSet) exit = true;
-                }
+                if (Console.ReadLine().Equals("quit")) quit = true;
             }
         }
     }

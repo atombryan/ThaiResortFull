@@ -29,17 +29,23 @@ namespace Thai_Resort.Repositories
                     fullName = entry.fullName,
                     phoneNumber = entry.phoneNumber,
                     specialRequests = entry.specialRequests,
-                    reservationPlan = entry.reservationPlan
+                    reservationPlan = entry.reservationPlan,
+                    workouts = new List<HotelInfo.WorkoutInfo>(),
+                    fitnessPlan = entry.fitnessPlan,
+                    billingInfo = entry.billingInfo,
+                    dietPlan = entry.dietPlan,
+                    meals = new List<HotelInfo.MealInfo>(),
                 });
                 return new UserDatabaseEntryResponse() { checkIn = DateTime.Now, checkOut = DateTime.Now };
             }
         }
+
         public void modifyUser(string userHash, UserDatabaseEntry entry)
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-                UserDatabaseEntry currentInfo = connection.Select<UserDatabaseEntry>(e => e.userHash.Equals(userHash))[1];
-                connection.Delete<UserDatabaseEntry>(e => e.userHash.Equals(userHash));
+                UserDatabaseEntry currentInfo = connection.Select<UserDatabaseEntry>(e => e.userHash==(userHash))[0];
+                connection.Delete<UserDatabaseEntry>(e => e.userHash==(userHash));
                 connection.Insert(new UserDatabaseEntry()
                 {
                     userHash = entry.userHash,
@@ -62,14 +68,14 @@ namespace Thai_Resort.Repositories
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-                connection.Delete<UserDatabaseEntry>(e => e.userHash.Equals(userHash));
+                connection.Delete<UserDatabaseEntry>(e => e.userHash==(userHash));
             }
         }
         public HotelInfo.FitnessPlans getUserFitnessPlan (string userHash)
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-               return connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[1].fitnessPlan;
+               return connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[0].fitnessPlan;
             }
         }
         public int writeMealInfo (string username, string userHash, HotelInfo.MealInfo mealInfo)
@@ -77,23 +83,23 @@ namespace Thai_Resort.Repositories
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
                 mealInfo.date = DateTime.Now;
-                UserDatabaseEntry currentInfo = connection.Select<UserDatabaseEntry>(e => e.userHash.Equals(userHash))[1];
-                if (currentInfo.Equals(null)) return 1;
+                UserDatabaseEntry currentInfo = connection.Select<UserDatabaseEntry>(e => e.userHash==(userHash))[0];
+                if (currentInfo==(null)) return 1;
                 currentInfo.meals.Add(mealInfo);
-                connection.Delete<UserDatabaseEntry>(e => e.userHash.Equals(userHash));
+                connection.Delete<UserDatabaseEntry>(e => e.userHash==(userHash));
                 connection.Insert<UserDatabaseEntry>(currentInfo);
             }
             return 0;
         }
-        public int writeWorkoutInfo (string username, string userHash, HotelInfo.WorkoutInfo workoutInfo)
+        public int writeWorkoutInfo (string userHash, HotelInfo.WorkoutInfo workoutInfo)
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
                 workoutInfo.date = DateTime.Now;
-                UserDatabaseEntry currentInfo = connection.Select<UserDatabaseEntry>(e => e.userHash.Equals(userHash))[1];
-                if (currentInfo.Equals(null)) return 1;
+                UserDatabaseEntry currentInfo = connection.Select<UserDatabaseEntry>(e => e.userHash==(userHash))[0];
+                if (currentInfo==(null)) return 1;
                 currentInfo.workouts.Add(workoutInfo);
-                connection.Delete<UserDatabaseEntry>(e => e.userHash.Equals(userHash));
+                connection.Delete<UserDatabaseEntry>(e => e.userHash==(userHash));
                 connection.Insert<UserDatabaseEntry>(currentInfo);
             }
             return 0;
@@ -104,14 +110,14 @@ namespace Thai_Resort.Repositories
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-                return connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[1].dietPlan;
+                return connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[0].dietPlan;
             }
         }
-        public List<HotelInfo.WorkoutInfo> getWorkoutInfo (string username, string userHash, DateTime date)
+        public List<HotelInfo.WorkoutInfo> getWorkoutInfo (string userHash, DateTime date)
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-                List<HotelInfo.WorkoutInfo> workouts = connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[1].workouts;
+                List<HotelInfo.WorkoutInfo> workouts = connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[0].workouts;
                 List<HotelInfo.WorkoutInfo> workoutsOnDate = new List<HotelInfo.WorkoutInfo>();
                 foreach (HotelInfo.WorkoutInfo wkout in workouts)
                 {
@@ -124,7 +130,7 @@ namespace Thai_Resort.Repositories
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-                List<HotelInfo.MealInfo> meals = connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[1].meals;
+                List<HotelInfo.MealInfo> meals = connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[0].meals;
                 List<HotelInfo.MealInfo> mealsOnDate = new List<HotelInfo.MealInfo>();
                 foreach (HotelInfo.MealInfo meal in meals)
                 {
@@ -137,7 +143,7 @@ namespace Thai_Resort.Repositories
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-                return connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[1].billingInfo;
+                return connection.Select<UserDatabaseEntry>(e => e.userHash == userHash)[0].billingInfo;
             }
         }
     }

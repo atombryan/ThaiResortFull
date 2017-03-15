@@ -9,17 +9,16 @@ namespace Thai_Resort.Services
 {
     public class WriteWorkoutService : Service
     {
-        UserInfoRepository UserInfoRepository { get; set; }
+        public UserInfoRepository UserInfoRepository { get; set; }
         public object Any(WriteWorkoutServiceEntry entry)
         {
-            return new WriteWorkoutServiceResponse() { returnCode = UserInfoRepository.writeWorkoutInfo(entry.username, entry.userHash, entry.workoutInfo) };
+            return new WriteWorkoutServiceResponse() { returnCode = UserInfoRepository.writeWorkoutInfo(entry.userHash, entry.workoutInfo) };
         }
         
     }
     [Route("/WriteWork")]
     public class WriteWorkoutServiceEntry : IReturn<WriteWorkoutServiceResponse>
     {
-        public string username { get; set; }
         public string userHash { get; set; }
         public HotelInfo.WorkoutInfo workoutInfo { get; set; }
     }

@@ -10,7 +10,7 @@ namespace Thai_Resort.Services
 {
     public class GetFitnessPlanInfoService : Service
     {
-        UserInfoRepository UserInfoRepository { get; set; }
+        public UserInfoRepository UserInfoRepository { get; set; }
 
         public object Any(GetPlanInfoServiceEntry entry)
         { 

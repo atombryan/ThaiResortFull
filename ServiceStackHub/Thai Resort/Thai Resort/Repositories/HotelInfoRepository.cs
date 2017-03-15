@@ -16,7 +16,8 @@ namespace Thai_Resort.Repositories
         {
             using (var connection = userConnectionFactory.OpenDbConnection())
             {
-                return connection.Select<HotelInfo.HotelInfo>(e => true)[1];
+                // return connection.Select<HotelInfo.HotelInfo>(e => true)[1];
+                return new HotelInfo.HotelInfo() { activities = new List<string> { "Swimming", "Golf", "Yay" }, description = "bigOlHotel", name = "The Thai Resort", services = new List<string>() { "Workout", "Eat", "Have Fun" } };
             }
         }
         public HotelInfo.Menu getMenu (DateTime date)

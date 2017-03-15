@@ -9,19 +9,17 @@ namespace Thai_Resort.Services
 {
     public class GetWorkoutInfoService : Service
     {
-        UserInfoRepository UserInfoRepository { get; set; }
+        public UserInfoRepository UserInfoRepository { get; set; }
 
         public object Any(GetWorkoutInfoServiceEntry entry)
         {
-            return new GetWorkoutInfoServiceResponse() { workoutInfo = UserInfoRepository.getWorkoutInfo(entry.username, entry.userhash, entry.date) };
+            return new GetWorkoutInfoServiceResponse() { workoutInfo = UserInfoRepository.getWorkoutInfo(entry.userhash, entry.date) };
         }
-
     }
 
     [Route("/GetWorkInfo")]
     public class GetWorkoutInfoServiceEntry : IReturn<GetWorkoutInfoServiceResponse>
     {
-        public string username { get; set; }
         public string userhash { get; set; }
         public DateTime date { get; set; }
     }

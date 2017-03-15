@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\bryan.perkins\Desktop\ServiceSTack</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\bryan.perkins\Desktop\ThaiResortLinuxSelfStart</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -38,6 +38,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>06/15/2015 02:06:24</publishTime>
+    </File>
+    <File Include="bin/Mono.Posix.dll">
+      <publishTime>06/24/2014 15:54:48</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/18/2015 20:19:46</publishTime>
@@ -105,6 +108,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Thai Resort.dll">
       <publishTime>03/08/2017 17:50:14</publishTime>
     </File>
+    <File Include="bin/Thai Resort.exe">
+      <publishTime>03/09/2017 17:23:20</publishTime>
+    </File>
     <File Include="bin/x64/SQLite.Interop.dll">
       <publishTime>12/16/2016 13:18:42</publishTime>
     </File>
@@ -115,10 +121,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/27/2017 16:07:00</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>03/06/2017 16:26:14</publishTime>
+      <publishTime>03/09/2017 16:13:55</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/08/2017 17:01:22</publishTime>
+      <publishTime>03/09/2017 16:44:54</publishTime>
     </File>
   </ItemGroup>
 </Project>

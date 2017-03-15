@@ -14,7 +14,8 @@ namespace Thai_Resort.Services
         {
             if (entry.value)
             {
-                return new GetHotelInfoServiceResponse() { info = HotelInfoRepository.getHotelInfo() };
+                return new GetHotelInfoServiceResponse { info = new HotelInfo.HotelInfo { activities = new List<string> { "Swimming", "Golf", "Yay" }, description = "bigOlHotel", name = "The Thai Resort", services = new List<string>() { "Workout", "Eat", "Have Fun" } } };
+                //return new GetHotelInfoServiceResponse() { info = HotelInfoRepository.getHotelInfo() };
             }
             return new GetHotelInfoServiceResponse();            
         } 

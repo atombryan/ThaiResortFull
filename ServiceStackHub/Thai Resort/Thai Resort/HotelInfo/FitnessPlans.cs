@@ -8,9 +8,9 @@ namespace Thai_Resort.HotelInfo
 
     public enum FitnessPlans
     {
-        StrengthTraining,
-        Aerobic,
-        BulkBuilding,
-        Flexibility
+        StrengthTraining = 1,
+        Aerobic = 2,
+        BulkBuilding = 3,
+        Flexibility = 4
     }
 }
